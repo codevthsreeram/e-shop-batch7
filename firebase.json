@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/e-shop-batch7",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
