@@ -29,6 +29,8 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/product.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { AdminGuard } from './guards/admin.guard';
+import { WishlistService } from './services/wishlist.service';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -40,7 +42,8 @@ const routes: Routes = [
   { path: 'order-detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
   { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-  { path: 'my-dashboard', component: MyDashboardComponent },
+  { path: 'my-dashboard', component: MyDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'my-wishlist', component: WishlistComponent, canActivate: [AuthGuard] },
   { path: 'un-authorized', component: UnAuthorizedComponent },
   { path: '**', component: NotFoundComponent }
 ]
@@ -59,7 +62,8 @@ const routes: Routes = [
     OrderDetailComponent,
     NotFoundComponent,
     UnAuthorizedComponent,
-    MyDashboardComponent
+    MyDashboardComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,16 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AdminModule
   ],
-  providers: [AuthService, CategoryService, ProductService, ShoppingCartService, OrderService, AuthGuard, AdminGuard],
+  providers: [
+    AuthService,
+    CategoryService,
+    ProductService,
+    ShoppingCartService,
+    OrderService,
+    WishlistService,
+    AuthGuard,
+    AdminGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
